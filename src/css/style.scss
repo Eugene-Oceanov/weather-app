@@ -1,10 +1,16 @@
+@font-face {
+    font-family: LatoRegular;
+    src: url(../assets/fonts/Lato-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: LatoRegular, Arial, sans-serif;
     color: #fff;
 }
+
 
 body {
     height: 100vh;
@@ -13,9 +19,9 @@ body {
     align-items: center;
     background: #333;
 
+
     #app {
         padding: 15px;
-        width: 50vw;
     }
 
     #form {
@@ -40,30 +46,89 @@ body {
     }
 
 
-    #output-block {
+    #output {
+        transform: translateY(-10px);
+        transition: .3s ease;
+        opacity: 0;
+        width: 70vw;
+        display: flex;
+        justify-content: space-between;
 
-
-        .main-output {
+        .inner {
+            padding: 20px;
             position: relative;
-            transform: translateY(-10px);
-            transition: .3s ease;
-            opacity: 0;
-            width: 50%;
+            background: #555;
+            border-radius: 15px;
 
-            h3 {
-                font-size: 24px;
-                font-weight: 400;
-            }
-
-            h1 {
-                font-size: 42px;
+            &:first-child {
+                margin-bottom: 15px;
             }
 
             img {
+                height: 14px;
+                width: auto;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 42px;
+            }
+
+            h3 {
+                font-size: 28px;
+            }
+
+            .weather-icon {
                 position: absolute;
                 right: 0;
                 bottom: 0;
-                height: 80px;
+                height: 150px;
+                width: auto;
+            }
+        }
+
+        .city-name {
+            margin-bottom: 10px;
+
+            img {
+                height: 22px;
+            }
+        }
+
+        .main-output {
+            width: 30%;
+        }
+
+        .detailed-output {
+            width: 68%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .inner {
+                margin: 0;
+                width: 30%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+
+                .detailed-inner-icon {
+                    width: 100%;
+                    height: auto;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .wind-inner h3 {
+
+                img {
+                    height: 22px;
+                    margin-right: 5px;
+                }
             }
         }
     }
