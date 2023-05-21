@@ -3,6 +3,8 @@ import locationIMG from "./assets/img/location.png";
 import dateIMG from "./assets/img/calendar.png";
 import windIMG from "./assets/img/wind.png";
 import arrowIMG from "./assets/img/arrow.png";
+import barometerIMG from "./assets/img/barometer.png";
+import cloudIMG from "./assets/img/cloud.png";
 
 const form = document.getElementById("form");
 const input = document.querySelector(".form__input");
@@ -11,6 +13,8 @@ const apiKey = "6c8f0f7ad5092936c84ffa59c55956f1";
 
 form.onsubmit = (e) => {
     e.preventDefault();
+    output.style.opacity = 0;
+    output.style.transform = "translateY(-10px)";
     output.innerHTML = "";
     if (!input.value) {
         alert("Enter city name");
@@ -38,8 +42,19 @@ form.onsubmit = (e) => {
             detailedOutput.classList.add("detailed-output");
             detailedOutput.innerHTML = `<div class="inner wind-inner">
                                             <img src="${windIMG}" alt="wind.png" class="detailed-inner-icon">
-                                            <h3><img src="${arrowIMG}" alt="arrow.png" style="transform: rotate(${data.wind.deg}deg"> ${data.wind.speed} m/s</h3>
                                             <h4>Gust ${data.wind.gust} m/s</h4>
+                                            <h3><img src="${arrowIMG}" alt="arrow.png" style="transform: rotate(${data.wind.deg}deg"> ${data.wind.speed} m/s</h3>
+                                        </div>
+                                        <div class="inner wind-inner">
+                                            <img src="${barometerIMG}" alt="barometer.png" class="detailed-inner-icon">
+                                            <h3>${data.main.pressure} hPa</h3>
+
+                                        </div>
+                                        <div class="inner wind-inner">
+                                            <img src="${cloudIMG}" alt="cloud.png" class="detailed-inner-icon">
+                                            <h4>${data.weather[0].description}</h4>
+                                            <h3>${data.clouds.all} %</h3>
+                                            
                                         </div>`;
             output.appendChild(detailedOutput);
 
@@ -69,50 +84,3 @@ function getLocalTime(timezone) {
     minutes < 10 ? minutes = `0${minutes}` : minutes = minutes;
     return `${week[date.getUTCDay()]}, ${hours}:${minutes}`;
 }
-
-// { ec6e4c
-//   "coord": {
-//     "lon": 37.6156,
-//     "lat": 55.7522
-//   },
-//   "weather": [
-//     {
-//       "id": 802,
-//       "main": "Clouds",
-//       "description": "scattered clouds",
-//       "icon": "03n"
-//     }
-//   ],
-//   "base": "stations",
-//   "main": {
-//     "temp": 277.48,
-//     "feels_like": 277.48,
-//     "temp_min": 274.28,
-//     "temp_max": 279.39,
-//     "pressure": 1033,
-//     "humidity": 52,
-//     "sea_level": 1033,
-//     "grnd_level": 1014
-//   },
-//   "visibility": 10000,
-//   "wind": {
-//     "speed": 0.55,
-//     "deg": 44,
-//     "gust": 0.62
-//   },
-//   "clouds": {
-//     "all": 33
-//   },
-//   "dt": 1683576526,
-//   "sys": {
-//     "type": 2,
-//     "id": 2000314,
-//     "country": "RU",
-//     "sunrise": 1683509552,
-//     "sunset": 1683566375
-//   },
-//   "timezone": 10800,
-//   "id": 524901,
-//   "name": "Moscow",
-//   "cod": 200
-// }
